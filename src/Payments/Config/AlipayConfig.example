@@ -1,0 +1,51 @@
+<?php
+namespace Payments\Config;
+/**
+ * Created by PhpStorm.
+ * User: jokechat
+ * Date: 2017/8/4
+ * Time: 00:20
+ */
+class AlipayConfig
+{
+    /**
+     * 获取支付宝配置信息
+     * @return mixed
+     */
+    public function getConfig()
+    {
+        // 合作者身份id
+        $params['app_id']       = "";
+
+        // 支付形式
+        $params['method']       = "alipay.trade.app.pay";
+
+        // 数据类型
+        $params['format']       = "json";
+
+        // 签名类型
+        $params['sign_type']    = "RSA";
+
+        // 支付宝网关
+        $params['gate_way_url'] = "https://openapi.alipay.com/gateway.do";
+
+        // 支付sdk  暂时不做修改
+        $params['alipay_sdk']   = 'alipay-sdk-php-20161101';
+
+        $params['charset']      = "UTF-8";
+
+        // 支付成功回调url
+        $params['notify_url']   = "http://domain/notify.php";
+
+        // 版本
+        $params['version']      = "1.0";
+
+        $params['product_code'] = "QUICK_MSECURITY_PAY";
+
+        // 私钥证书路径
+        $params['ca_rsa_private_key_filepath']  = "../../CaCertFile/alipay_rsa_private_key.pem";
+
+        return $params;
+    }
+}
+
