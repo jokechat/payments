@@ -24,7 +24,7 @@ class AlipaySubmit
     public $rsaPrivateKey;
 
 
-    public function buildParam($orderid,$total_amount,$body,$subject,$timeout_express = "30m")
+    public function buildParam($orderid,$total_amount,$body,$subject,$timeout_express = "30m",$notify_url = "")
     {
         $ali_config             = new AlipayConfig();
         $config                 = $ali_config->getConfig();
@@ -43,7 +43,10 @@ class AlipaySubmit
         $params['alipay_sdk']   = $config['alipay_sdk'];
         $params['charset']      = $config['charset'];
         $params['version']      = $config['version'];
-        $params['notify_url']   = $config['notify_url'];
+
+        if (empty($notify_url)) {
+            $params['notify_url']   = $config['notify_url'];
+        }
 
         // 私钥路径/私钥key 二选一
         $this->setRsaPrivateKeyFilePath($config['ca_rsa_private_key_filepath']);
